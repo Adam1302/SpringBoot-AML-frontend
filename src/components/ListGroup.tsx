@@ -39,7 +39,7 @@ function ListGroup() {
             <h1>Book List</h1>
             {getNoItemsMsg()}
             <ul className="list-group">
-            {books.map(item => <> <li key={item.id} className="list-group-item">{item.work_name} by {item.primary_author}</li> <DeleteBookBtn /> </>)}
+            {books.map(item => <> <li key={item.id} className="list-group-item">{item.work_name} by {item.primary_author}</li> <DeleteBookBtn id={item.id} /> </>)}
             </ul>
         </>
     );

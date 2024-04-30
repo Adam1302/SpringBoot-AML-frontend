@@ -1,9 +1,8 @@
 import api from '../api/axiosConfig'
 
-function DeleteBookBtn() {
+function DeleteBookBtn({ id }: { id: string }) {
     const deleteBook = async () => {
         try {
-        let id = ""
           const deletePath = "/api/v1/book/" + id;
           const response = await api.delete(deletePath);
         // handles HTTP get request to return movie data
