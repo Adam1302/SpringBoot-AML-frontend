@@ -36,12 +36,15 @@ function ListGroup() {
     } // Th logical AND ensures statement 2 only runs if statement 1 is TRUE
 
     const [alertMsg, setAlertMsg] = useState(<></>)
+    const [alertVisible, setAlertVisible] = useState(false)
     const setAlert = ({ success, children } : { success: boolean, children: ReactNode }) => {
+        setAlertVisible(true);
         setAlertMsg(
-        <Alert success={success}>
+        <Alert success={success} dismissAlert={dismissAlert}>
             {children}
-        </Alert>)
+        </Alert>);
     }
+    const dismissAlert = () => setAlertVisible(false)
 
     return (
         <>
@@ -61,7 +64,7 @@ function ListGroup() {
                         reloadBookList={getBooks}
                         alertSetter={setAlert} /> </li>
             </ul>
-            {alertMsg}
+            {alertVisible && alertMsg}
         </>
     );
 }
