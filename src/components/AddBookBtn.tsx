@@ -29,7 +29,7 @@ function AddBookBtn() {
         });
       }
 
-    return <button onClick={() => addBook()}>Add Book</button>
+    return <button onClick={addBook}>Add Book</button>
 }
 
 export default AddBookBtn;

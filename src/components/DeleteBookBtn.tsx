@@ -13,7 +13,7 @@ function DeleteBookBtn({ id }: { id: string }) {
         }
       }
 
-    return <button onClick={() => deleteBook()}>Delete</button>
+    return <button onClick={deleteBook}>Delete</button>
 }
 
 export default DeleteBookBtn;
