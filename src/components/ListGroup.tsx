@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from '../api/axiosConfig'
+import AddBookBtn from "./AddBookBtn";
 import DeleteBookBtn from "./DeleteBookBtn";
 
 function ListGroup() {
@@ -40,6 +41,7 @@ function ListGroup() {
             {getNoItemsMsg()}
             <ul className="list-group">
             {books.map(item => <li key={item.id} className="list-group-item"> <>{item.work_name} by {item.primary_author} <DeleteBookBtn id={item.id} /> </> </li>  )}
+            <li> <AddBookBtn/> </li>
             </ul>
         </>
     );
