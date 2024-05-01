@@ -40,8 +40,8 @@ function ListGroup() {
             <h1>Book List</h1>
             {getNoItemsMsg()}
             <ul className="list-group">
-            {books.map(item => <li key={item.id} className="list-group-item"> <>{item.work_name} by {item.primary_author} <DeleteBookBtn id={item.id} /> </> </li>  )}
-            <li> <AddBookBtn/> </li>
+            {books.map(item => <li key={item.id} className="list-group-item"> <>{item.work_name} by {item.primary_author} <DeleteBookBtn id={item.id} reloadBookList={getBooks} /> </> </li>  )}
+            <li> <AddBookBtn reloadBookList={getBooks} /> </li>
             </ul>
         </>
     );

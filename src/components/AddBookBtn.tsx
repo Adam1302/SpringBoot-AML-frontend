@@ -1,7 +1,11 @@
 import api from '../api/axiosConfig'
 import axios from 'axios';
 
-function AddBookBtn() {
+interface Props {
+    reloadBookList: () => void;
+}
+
+function AddBookBtn({ reloadBookList }: Props) {
     const addBook = async () => {
         let data = JSON.stringify({
             "work_name": "The Symposium 2",
@@ -23,6 +27,7 @@ function AddBookBtn() {
         axios.request(config)
         .then((response) => {
             console.log(JSON.stringify(response.data));
+            reloadBookList();
         })
         .catch((error) => {
             console.log(error);
