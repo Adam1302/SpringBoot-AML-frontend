@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import api from '../api/axiosConfig'
 import AddBookBtn from "./AddBookBtn";
 import DeleteBookBtn from "./DeleteBookBtn";
+import Alert from "./Alert";
 
 function ListGroup() {
-    
 
     interface Book {
         id: string,
@@ -35,14 +35,33 @@ function ListGroup() {
         return books.length === 0 && <p>You have no books</p>
     } // Th logical AND ensures statement 2 only runs if statement 1 is TRUE
 
+    const [alertMsg, setAlertMsg] = useState(<></>)
+    const setAlert = ({ success, children } : { success: boolean, children: ReactNode }) => {
+        setAlertMsg(
+        <Alert success={success}>
+            {children}
+        </Alert>)
+    }
+
     return (
         <>
             <h1>Book List</h1>
             {getNoItemsMsg()}
             <ul className="list-group">
-            {books.map(item => <li key={item.id} className="list-group-item"> <>{item.work_name} by {item.primary_author} <DeleteBookBtn id={item.id} reloadBookList={getBooks} /> </> </li>  )}
-            <li> <AddBookBtn reloadBookList={getBooks} /> </li>
+                {books.map(
+                    item => 
+                    <li key={item.id} 
+                        className="list-group-item"> 
+                    <>{item.work_name} by {item.primary_author} 
+                        <DeleteBookBtn 
+                            id={item.id} 
+                            reloadBookList={getBooks}
+                            alertSetter={setAlert} /> </> </li>  )}
+                <li> <AddBookBtn 
+                        reloadBookList={getBooks}
+                        alertSetter={setAlert} /> </li>
             </ul>
+            {alertMsg}
         </>
     );
 }
