@@ -9,13 +9,13 @@ interface Props {
 
 function AddBookBtn({ reloadBookList, alertSetter }: Props) {
     const addBook = async () => {
-        const work_name = "The Symposium 2"
+        const work_title = "The Symposium 2"
         const primary_author = "Plato 2"
         const year_published = -365
         const word_count = 20000
 
         let data = JSON.stringify({
-            "work_name": work_name,
+            "work_title": work_title,
             "primary_author": primary_author,
             "year_published": year_published,
             "word_count": word_count
@@ -35,7 +35,7 @@ function AddBookBtn({ reloadBookList, alertSetter }: Props) {
         .then((response) => {
             console.log(JSON.stringify(response.data));
             reloadBookList();
-            alertSetter({ success: true, children: work_name + " Added"} );
+            alertSetter({ success: true, children: work_title + " Added"} );
         })
         .catch((error) => {
             console.log(error);

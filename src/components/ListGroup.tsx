@@ -8,7 +8,7 @@ function ListGroup() {
 
     interface Book {
         id: string,
-        work_name: string,
+        work_title: string,
         primary_author: string,
         year_published: Int32Array,
         word_count: Int32Array
@@ -55,7 +55,7 @@ function ListGroup() {
                     item => 
                     <li key={item.id} 
                         className="list-group-item"> 
-                    <>{item.work_name} by {item.primary_author} 
+                    <>{item.work_title} by {item.primary_author} 
                         <DeleteBookBtn 
                             id={item.id} 
                             reloadBookList={getBooks}

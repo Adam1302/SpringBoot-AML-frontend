@@ -9,7 +9,7 @@ interface DeleteBookBtnProps {
 
 interface Book {
     id: string,
-    work_name: string,
+    work_title: string,
     primary_author: string,
     year_published: Int32Array,
     word_count: Int32Array
@@ -24,7 +24,7 @@ function DeleteBookBtn({ id, reloadBookList, alertSetter }: DeleteBookBtnProps) 
         // AWAIT: ensures UI thread is not blocked when long-running API calls are processed -- once task is completed, below code is executed
           console.log(response.data);
           reloadBookList();
-          alertSetter({ success: true, children: bookName.work_name + " Deleted"} );
+          alertSetter({ success: true, children: bookName.work_title + " Deleted"} );
         } catch(err) {
           console.log(err);
         }
