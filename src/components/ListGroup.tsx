@@ -3,6 +3,7 @@ import api from '../api/axiosConfig'
 import AddBookBtn from "./AddBookBtn";
 import DeleteBookBtn from "./DeleteBookBtn";
 import Alert from "./Alert";
+import BookImage from "./BookImage";
 
 function ListGroup() {
 
@@ -55,7 +56,9 @@ function ListGroup() {
                     item => 
                     <li key={item.id} 
                         className="list-group-item"> 
-                    <>{item.work_title} by {item.primary_author} 
+                    <>
+                    <BookImage id={item.id} />
+                    {item.work_title} by {item.primary_author} 
                         <DeleteBookBtn 
                             id={item.id} 
                             reloadBookList={getBooks}
