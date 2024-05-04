@@ -6,11 +6,6 @@ interface Props {
     id : string;
 }
 
-interface Image {
-    id: string,
-    picture: Blob
-}
-
 function BookImage({ id }: Readonly<Props>) {
     const [imgBlob, setImgBlob] = useState('');
 

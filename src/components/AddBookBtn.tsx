@@ -1,13 +1,15 @@
 import { ReactNode } from 'react';
 import api from '../api/axiosConfig'
 import axios from 'axios';
+import { BookListSetterType } from '../interfaces/book';
+import { getBooks } from '../utils/bookApiCalls';
 
 interface Props {
-    reloadBookList: () => void;
+    bookListSetter: BookListSetterType;
     alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void;
 }
 
-function AddBookBtn({ reloadBookList, alertSetter }: Props) {
+function AddBookBtn({ bookListSetter, alertSetter }: Props) {
     const addBook = async () => {
         const work_title = "The Symposium 2"
         const primary_author = "Plato 2"
@@ -34,7 +36,7 @@ function AddBookBtn({ reloadBookList, alertSetter }: Props) {
         axios.request(config)
         .then((response) => {
             console.log(JSON.stringify(response.data));
-            reloadBookList();
+            getBooks(bookListSetter);
             alertSetter({ success: true, children: work_title + " Added"} );
         })
         .catch((error) => {
