@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react'
 
-interface Props {
+interface BookAlertProps {
     success: boolean;
     children: ReactNode;
     dismissAlert: () => void;
 }
 
-const Alert = ({ success, children, dismissAlert }: Props) => {
+const Alert = ({ success, children, dismissAlert }: Readonly<BookAlertProps>) => {
     const alertClasses = "alert alert-dismissible fade show " + (success ? "alert-success" : "alert-failure");
   return (
     <div className={alertClasses} role="alert">

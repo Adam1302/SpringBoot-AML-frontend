@@ -1,7 +1,6 @@
 import api from '../api/axiosConfig'
 import axios from 'axios';
-import { Book } from '../interfaces/book';
-import { BookListSetterType } from '../interfaces/book';
+import { Book, BookListSetterType } from '../interfaces/book';
 import { AddBookBtnProps } from '../interfaces/props/AddBookBtnProps';
 import { DeleteBookBtnProps } from '../interfaces/props/DeleteBookBtnProps';
 
