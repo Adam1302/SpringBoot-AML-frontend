@@ -3,3 +3,5 @@ export interface Image {
     id: string,
     picture: Blob
 }
+
+export type ImageSetterType = React.Dispatch<React.SetStateAction<string>>;
