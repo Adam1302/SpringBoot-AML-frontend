@@ -56,13 +56,12 @@ function ListGroup() {
                     item => 
                     <li key={item.id} 
                         className="list-group-item"> 
-                    <>
                     <BookImage id={item.id} />
                     {item.work_title} by {item.primary_author} 
                         <DeleteBookBtn 
                             id={item.id} 
                             reloadBookList={getBooks}
-                            alertSetter={setAlert} /> </> </li>  )}
+                            alertSetter={setAlert} /> </li>  )}
                 <li> <AddBookBtn 
                         reloadBookList={getBooks}
                         alertSetter={setAlert} /> </li>

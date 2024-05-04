@@ -11,7 +11,7 @@ interface Image {
     picture: Blob
 }
 
-function BookImage({ id }: Props) {
+function BookImage({ id }: Readonly<Props>) {
     const [imgBlob, setImgBlob] = useState('');
 
     const getImage = async () => {
@@ -32,7 +32,7 @@ function BookImage({ id }: Props) {
         getImage();
     }, [])
 
-    return <img className="listImage" src={imgBlob} width={175} height={250} />
+    return <img className="listImage" src={imgBlob} width={175} height={250} alt="Image Not Available"/>
 }
 
 export default BookImage
