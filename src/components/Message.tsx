@@ -1,5 +1,6 @@
 
 // We use PascalCase for React's Function Components
+// LEARNING
 function Message() {
     const name = 'AML Learner'
     
