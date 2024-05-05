@@ -1,8 +1,8 @@
 import api from '../api/axiosConfig'
 import axios from 'axios';
 import { Book, BookListSetterType } from '../interfaces/book';
-import { AddBookBtnProps } from '../interfaces/props/AddBookBtnProps';
 import { DeleteBookBtnProps } from '../interfaces/props/DeleteBookBtnProps';
+import { ReactNode } from "react";
 
 export const getBooks = async ( setBooks : BookListSetterType) => {
     try {
@@ -30,11 +30,19 @@ export const deleteBook = async ({ id, bookListSetter, alertSetter }: DeleteBook
     }
   }
 
-export const addBook = async ({ bookListSetter, alertSetter }: AddBookBtnProps) => {
-    const work_title = "The Symposium 2"
-    const primary_author = "Plato 2"
-    const year_published = -365
-    const word_count = 20000
+export const addBook = async (
+    { bookListSetter, 
+        alertSetter,
+        work_title, 
+        primary_author, 
+        year_published, 
+        word_count } : 
+    { bookListSetter: BookListSetterType, 
+        alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void, 
+        work_title : string, 
+        primary_author : string, 
+        year_published : number, 
+        word_count : number }) => {
 
     let data = JSON.stringify({
         "work_title": work_title,
