@@ -4,7 +4,7 @@ import DeleteBookBtn from "@components/DeleteBookBtn";
 import Alert from "@components/Alert";
 import BookImage from "@components/BookImage";
 import getBooks from "@utils/apiCalls/book/getBooks";
-import { Book } from "@interfaces/book";
+import Book from "@interfaces/book";
 
 function ListGroup() {
 
