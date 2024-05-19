@@ -1,7 +1,9 @@
+import BookListSetterType from "@interfaces/types/bookListSetterType";
 import { ReactNode } from "react";
-import { BookListSetterType } from "../book";
 
-export interface AddBookBtnProps {
+interface AddBookBtnProps {
     bookListSetter: BookListSetterType;
     alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void;
 }
+
+export default AddBookBtnProps;

@@ -1,8 +1,7 @@
+import ImageSetterType from '@interfaces/types/imageSetterType';
+import api from '@api/axiosConfig'
 
-import api from '../api/axiosConfig'
-import { ImageSetterType } from '../interfaces/image';
-
-export const getImage = async (id : string, setImgBlob : ImageSetterType) => {
+const getImage = async (id : string, setImgBlob : ImageSetterType) => {
     try {
       const getPath = "/api/v1/book/image/" + id;
       const imageFromDB = await api.get(getPath);
@@ -15,3 +14,5 @@ export const getImage = async (id : string, setImgBlob : ImageSetterType) => {
       console.log(err);
     }
   }
+
+export default getImage;

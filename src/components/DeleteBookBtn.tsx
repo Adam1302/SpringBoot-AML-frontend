@@ -1,5 +1,5 @@
-import { DeleteBookBtnProps } from '../interfaces/props/DeleteBookBtnProps';
-import { deleteBook } from '../utils/bookApiCalls';
+import DeleteBookBtnProps from '@interfaces/props/DeleteBookBtnProps';
+import deleteBook from '@utils/apiCalls/book/deleteBooks';
 
 function DeleteBookBtn({ id, bookListSetter, alertSetter }: Readonly<DeleteBookBtnProps>) {
   const handleDelete = async () => {

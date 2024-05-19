@@ -1,10 +1,10 @@
 import { useState, useEffect, ReactNode } from "react";
-import AddBookBtn from "./AddBookBtn";
-import DeleteBookBtn from "./DeleteBookBtn";
-import Alert from "./Alert";
-import BookImage from "./BookImage";
-import { getBooks } from "../utils/bookApiCalls";
-import { Book } from "../interfaces/book";
+import AddBookBtn from "@components/AddBookBtn";
+import DeleteBookBtn from "@components/DeleteBookBtn";
+import Alert from "@components/Alert";
+import BookImage from "@components/BookImage";
+import getBooks from "@utils/apiCalls/book/getBooks";
+import Book from "@interfaces/book";
 
 function ListGroup() {
 
