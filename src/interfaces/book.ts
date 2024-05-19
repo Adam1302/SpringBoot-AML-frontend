@@ -1,5 +1,5 @@
 
-export interface Book {
+interface Book {
     id: string,
     work_title: string,
     primary_author: string,
@@ -7,9 +7,4 @@ export interface Book {
     word_count: Int32Array
 }
 
-export type BookListSetterType = React.Dispatch<React.SetStateAction<Book[]>>;
-
-export interface BooksSetter {
-    setBooks: BookListSetterType;
-}
-
+export default Book;
