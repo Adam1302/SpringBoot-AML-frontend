@@ -1,5 +1,5 @@
-import addBook from '../utils/apiCalls/book/addBook';
-import { AddBookBtnProps } from '../interfaces/props/AddBookBtnProps';
+import addBook from '@utils/apiCalls/book/addBook';
+import { AddBookBtnProps } from '@interfaces/props/AddBookBtnProps';
 import { useState } from 'react';
 
 function AddBookBtn({ bookListSetter, alertSetter }: Readonly<AddBookBtnProps>) {

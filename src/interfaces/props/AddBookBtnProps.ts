@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { BookListSetterType } from "../book";
+import { BookListSetterType } from "@interfaces/book";
 
 export interface AddBookBtnProps {
     bookListSetter: BookListSetterType;

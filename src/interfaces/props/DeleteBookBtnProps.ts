@@ -1,4 +1,4 @@
-import { BookListSetterType } from '../book';
+import { BookListSetterType } from '@interfaces/book';
 import { ReactNode } from 'react';
 
 export interface DeleteBookBtnProps {

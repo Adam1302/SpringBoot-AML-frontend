@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import "../styles.css";
-import getImage from '../utils/apiCalls/image/getImage';
+import "@/styles.css";
+import getImage from '@utils/apiCalls/image/getImage';
 
 interface Props {
     id : string;

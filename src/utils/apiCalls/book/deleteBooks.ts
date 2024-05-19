@@ -1,6 +1,6 @@
-import api from '../../../api/axiosConfig'
-import { Book } from "../../../interfaces/book";
-import { DeleteBookBtnProps } from "../../../interfaces/props/DeleteBookBtnProps";
+import api from '@api/axiosConfig'
+import { Book } from "@interfaces/book";
+import { DeleteBookBtnProps } from "@interfaces/props/DeleteBookBtnProps";
 import getBooks from "./getBooks";
 
 

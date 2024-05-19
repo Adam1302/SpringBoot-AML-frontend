@@ -1,5 +1,5 @@
-import api from '../../../api/axiosConfig'
-import { ImageSetterType } from '../../../interfaces/image';
+import api from '@api/axiosConfig'
+import { ImageSetterType } from '@interfaces/image';
 
 const getImage = async (id : string, setImgBlob : ImageSetterType) => {
     try {

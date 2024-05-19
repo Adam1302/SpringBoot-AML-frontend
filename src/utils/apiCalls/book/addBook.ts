@@ -1,4 +1,4 @@
-import { BookListSetterType } from "../../../interfaces/book";
+import { BookListSetterType } from "@interfaces/book";
 import axios from "axios";
 import { ReactNode } from "react";
 import getBooks from "./getBooks";

@@ -1,5 +1,5 @@
-import api from '../../../api/axiosConfig'
-import { BookListSetterType } from '../../../interfaces/book';
+import api from '@api/axiosConfig'
+import { BookListSetterType } from '@interfaces/book';
 
 const getBooks = async ( setBooks : BookListSetterType) => {
     try {
