@@ -6,7 +6,7 @@ interface BookAlertProps {
     dismissAlert: () => void;
 }
 
-const Alert = ({ success, children, dismissAlert }: Readonly<BookAlertProps>) => {
+function Alert ({ success, children, dismissAlert }: Readonly<BookAlertProps>) {
     const alertClasses = "alert alert-dismissible fade show " + (success ? "alert-success" : "alert-failure");
   return (
     <div className={alertClasses} role="alert">
@@ -22,4 +22,4 @@ const Alert = ({ success, children, dismissAlert }: Readonly<BookAlertProps>) =>
   )
 }
 
-export default Alert
+export default Alert;
