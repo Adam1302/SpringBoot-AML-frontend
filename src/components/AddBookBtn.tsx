@@ -1,4 +1,4 @@
-import { addBook } from '../utils/bookApiCalls';
+import addBook from '../utils/apiCalls/book/addBook';
 import { AddBookBtnProps } from '../interfaces/props/AddBookBtnProps';
 import { useState } from 'react';
 

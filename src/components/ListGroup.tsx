@@ -3,7 +3,7 @@ import AddBookBtn from "./AddBookBtn";
 import DeleteBookBtn from "./DeleteBookBtn";
 import Alert from "./Alert";
 import BookImage from "./BookImage";
-import { getBooks } from "../utils/bookApiCalls";
+import getBooks from "../utils/apiCalls/book/getBooks";
 import { Book } from "../interfaces/book";
 
 function ListGroup() {
