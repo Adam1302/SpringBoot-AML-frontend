@@ -16,10 +16,10 @@ function AddBookBtn({ bookListSetter, alertSetter }: Readonly<AddBookBtnProps>) 
                 const yearPublishedAsInt = parseInt(yearPublished.replace(/,/g, ''), 10)
                 const wordCountAsInt = parseInt(wordCount.replace(/,/g, ''), 10)
                 if (Number.isNaN(yearPublishedAsInt)) {
-                    console.log("ERROR: Enter valid integer value for Year Published")
+                    console.log("ERROR: Enter an integer for Year Published")
                     alertSetter({ success: false, children: "ERROR: Enter valid integer value for Year Published"} );
-                } else if (Number.isNaN(wordCountAsInt)) {
-                    console.log("ERROR: Enter valid integer value for Word Count")
+                } else if (Number.isNaN(wordCountAsInt) || wordCountAsInt < 0) {
+                    console.log("ERROR: Enter positive integer for Word Count")
                     alertSetter({ success: false, children: "ERROR: Enter valid integer value for Word Count"} );
                 } else {
                     await addBook({ bookListSetter, alertSetter, work_title: workTitle, primary_author: primaryAuthor, year_published: yearPublishedAsInt, word_count: wordCountAsInt });
