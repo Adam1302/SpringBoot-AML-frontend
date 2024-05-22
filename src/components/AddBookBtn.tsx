@@ -5,15 +5,25 @@ import { useState } from 'react';
 function AddBookBtn({ bookListSetter, alertSetter }: Readonly<AddBookBtnProps>) {
     const [workTitle, setWorkTitle] = useState('')
     const [primaryAuthor, setPrimaryAuthor] = useState('')
-    const [yearPublished, setYearPublished] = useState<number>()
-    const [wordCount, setWordCount] = useState<number>()
+    const [yearPublished, setYearPublished] = useState('')
+    const [wordCount, setWordCount] = useState('')
 
     const handleClick = async () => {
         if (workTitle.length > 0
             && primaryAuthor.length > 0
             && yearPublished
             && wordCount) {
-            await addBook({ bookListSetter, alertSetter, work_title: workTitle, primary_author: primaryAuthor, year_published: yearPublished, word_count: wordCount });
+                const yearPublishedAsInt = parseInt(yearPublished.replace(/,/g, ''), 10)
+                const wordCountAsInt = parseInt(wordCount.replace(/,/g, ''), 10)
+                if (Number.isNaN(yearPublishedAsInt)) {
+                    console.log("ERROR: Enter valid integer value for Year Published")
+                    alertSetter({ success: false, children: "ERROR: Enter valid integer value for Year Published"} );
+                } else if (Number.isNaN(wordCountAsInt)) {
+                    console.log("ERROR: Enter valid integer value for Word Count")
+                    alertSetter({ success: false, children: "ERROR: Enter valid integer value for Word Count"} );
+                } else {
+                    await addBook({ bookListSetter, alertSetter, work_title: workTitle, primary_author: primaryAuthor, year_published: yearPublishedAsInt, word_count: wordCountAsInt });
+                }
         } else {
             alertSetter({ success: false, children: "Unable to add book - invalid entries" });
         }
@@ -38,14 +48,14 @@ function AddBookBtn({ bookListSetter, alertSetter }: Readonly<AddBookBtnProps>) 
         Year Published: <input 
             type="text"
             value={yearPublished}
-            onChange={(e) => setYearPublished(+e.target.value)}
+            onChange={(e) => setYearPublished(e.target.value)}
         />
     </label>
     <label>
         Word Count: <input 
             type="text"
             value={wordCount}
-            onChange={(e) => setWordCount(+e.target.value)}
+            onChange={(e) => setWordCount(e.target.value)}
         />
     </label>
     <button onClick={handleClick}>Add Book</button>

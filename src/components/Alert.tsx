@@ -7,7 +7,7 @@ interface BookAlertProps {
 }
 
 function Alert ({ success, children, dismissAlert }: Readonly<BookAlertProps>) {
-    const alertClasses = "alert alert-dismissible fade show " + (success ? "alert-success" : "alert-failure");
+    const alertClasses = "alert alert-dismissible fade show " + (success ? "alert-success" : "alert-danger");
   return (
     <div className={alertClasses} role="alert">
         <div>{children}</div>
