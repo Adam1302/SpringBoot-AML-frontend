@@ -1,9 +1,9 @@
 import getBooks from "@utils/apiCalls/book/getBooks";
-import BookFieldConstants from "@/utils/constants/bookFieldConstants";
+import BookFieldConstants from "@utils/constants/bookFieldConstants";
 import { Checkbox, Form } from 'semantic-ui-react';
-import BookListSetterType from "@/interfaces/types/bookListSetterType";
+import BookListSortingOptionsProps from "@interfaces/props/BookListSortingOptionsProps";
 
-function BookListSortingOptions( { setBooks, sortByColumn, setSortByColumn, sortByOrderIsASC, setSortByOrderIsASC } : { setBooks : BookListSetterType, sortByColumn : string, setSortByColumn : React.Dispatch<React.SetStateAction<string>>, sortByOrderIsASC : boolean, setSortByOrderIsASC : React.Dispatch<React.SetStateAction<boolean>> } ) {
+function BookListSortingOptions( { setBooks, sortByColumn, setSortByColumn, sortByOrderIsASC, setSortByOrderIsASC } : Readonly<BookListSortingOptionsProps> ) {
     return <>
     <Form.Group className='d-flex'>
                 <label>Sort list by: </label>
