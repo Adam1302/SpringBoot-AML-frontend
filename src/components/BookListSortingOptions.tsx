@@ -1,5 +1,5 @@
 import getBooks from "@utils/apiCalls/book/getBooks";
-import BookFieldConstants from "@utils/constants/bookFieldConstants";
+import BookFieldConstants from "@utils/constants/BookFieldConstants";
 import { Checkbox, Form } from 'semantic-ui-react';
 import BookListSortingOptionsProps from "@interfaces/props/BookListSortingOptionsProps";
 
