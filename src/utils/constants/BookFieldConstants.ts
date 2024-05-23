@@ -14,9 +14,9 @@ class BookFieldConstants {
     static readonly fieldMap = new Map<string, string>([
         ["work_title", "Work Title"],
         ["primary_author", "Primary Author"],
-        ["created_at", "Date Added"],
         ["word_count", "Word Count"],
-        ["year_published", "Year"]
+        ["year_published", "Year Published"],
+        ["created_at", "Date Added"]
     ]);
 }
 

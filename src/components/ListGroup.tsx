@@ -6,12 +6,13 @@ import BookImage from "@components/BookImage";
 import getBooks from "@utils/apiCalls/book/getBooks";
 import Book from "@interfaces/book";
 import BookFieldConstants from "@/utils/constants/bookFieldConstants";
-import { Form } from 'semantic-ui-react';
+import { Checkbox, Form } from 'semantic-ui-react';
 
 function ListGroup() {
 
     const [books, setBooks] = useState<Book[]>([]);
     const [sortByColumn, setSortByColumn] = useState(BookFieldConstants.workTitleField)
+    const [sortByOrderIsASC, setSortByOrderIsASC] = useState(true)
 
     const getNoItemsMsg = () => {
         return books.length === 0 && <p>You have no books</p>
@@ -29,7 +30,7 @@ function ListGroup() {
     const dismissAlert = () => setAlertVisible(false)
 
     useEffect(() => {
-        getBooks( setBooks, sortByColumn );
+        getBooks( setBooks, sortByColumn, sortByOrderIsASC );
     }, [])
 
     return (
@@ -38,11 +39,13 @@ function ListGroup() {
 
             <Form.Group className='d-flex'>
                 <label>Sort list by: </label>
-                {BookFieldConstants.fieldList.map(
+                {Array.from(BookFieldConstants.fieldMap.entries()).map(
                     field =>
-                        <Form.Radio label={field} checked={sortByColumn === field} value={field} onClick={() => { getBooks( setBooks, field ); setSortByColumn(field); }} className='inline-radio-list' />
+                        <Form.Radio label={field[1]} checked={sortByColumn === field[0]} value={field[0]} onClick={() => { getBooks( setBooks, field[0], sortByOrderIsASC ); setSortByColumn(field[0]); }} className='inline-radio-list' />
                 )}
             </Form.Group>
+
+            <Checkbox className="toggle-btn" toggle defaultChecked={true} label={sortByOrderIsASC ? "ASC" : "DESC"} onClick={(evt, data) => { setSortByOrderIsASC(!sortByOrderIsASC); getBooks( setBooks, sortByColumn, !sortByOrderIsASC); } } />
 
             {getNoItemsMsg()}
             <ul className="list-group">
@@ -56,7 +59,8 @@ function ListGroup() {
                             id={item.id} 
                             bookListSetter={setBooks}
                             alertSetter={setAlert}
-                            sortingColumn={sortByColumn} /> </li>  )}
+                            sortingColumn={sortByColumn}
+                            sortByOrderIsASC={sortByOrderIsASC} /> </li>  )}
             </ul>
 
             <AddBookBtn 

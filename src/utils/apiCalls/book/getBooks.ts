@@ -1,12 +1,12 @@
 import BookListSetterType from '@interfaces/types/bookListSetterType';
 import api from '@api/axiosConfig'
 
-const getBooks = async ( setBooks : BookListSetterType, sortingColumn : string ) => {
+const getBooks = async ( setBooks : BookListSetterType, sortingColumn : string, sortByOrderIsASC : boolean ) => {
     try {
       const response = await api.get("/api/v1/book", {
         params: {
           sort_by: sortingColumn,
-          sorting_order: 'ASC'
+          sorting_order: sortByOrderIsASC ? 'ASC' : 'DESC'
         }
       });
     // handles HTTP get request to return movie data
