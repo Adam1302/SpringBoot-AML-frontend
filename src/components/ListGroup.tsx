@@ -6,7 +6,7 @@ import BookImage from "@components/BookImage";
 import getBooks from "@utils/apiCalls/book/getBooks";
 import Book from "@interfaces/book";
 import BookFieldConstants from "@/utils/constants/bookFieldConstants";
-import { Checkbox, Form } from 'semantic-ui-react';
+import BookListSortingOptions from "./BookListSortingOptions";
 
 function ListGroup() {
 
@@ -37,15 +37,8 @@ function ListGroup() {
         <>
             <h1>Book List</h1>
 
-            <Form.Group className='d-flex'>
-                <label>Sort list by: </label>
-                {Array.from(BookFieldConstants.fieldMap.entries()).map(
-                    field =>
-                        <Form.Radio label={field[1]} checked={sortByColumn === field[0]} value={field[0]} onClick={() => { getBooks( setBooks, field[0], sortByOrderIsASC ); setSortByColumn(field[0]); }} className='inline-radio-list' />
-                )}
-            </Form.Group>
-
-            <Checkbox className="toggle-btn" toggle defaultChecked={true} label={sortByOrderIsASC ? "ASC" : "DESC"} onClick={(evt, data) => { setSortByOrderIsASC(!sortByOrderIsASC); getBooks( setBooks, sortByColumn, !sortByOrderIsASC); } } />
+            <BookListSortingOptions 
+            setBooks={setBooks} sortByColumn={sortByColumn} setSortByColumn={setSortByColumn} sortByOrderIsASC={sortByOrderIsASC} setSortByOrderIsASC={setSortByOrderIsASC} />
 
             {getNoItemsMsg()}
             <ul className="list-group">
@@ -54,7 +47,7 @@ function ListGroup() {
                     <li key={item.id} 
                         className="list-group-item"> 
                     <BookImage id={item.id} />
-                    {item.work_title} by {item.primary_author} 
+                    {item.work_title} {item.primary_author ? "by".concat(' ', item.primary_author) : ""}
                         <DeleteBookBtn 
                             id={item.id} 
                             bookListSetter={setBooks}
@@ -66,7 +59,8 @@ function ListGroup() {
             <AddBookBtn 
                 bookListSetter={setBooks}
                 alertSetter={setAlert}
-                sortingColumn={sortByColumn} />
+                sortingColumn={sortByColumn}
+                sortByOrderIsASC={sortByOrderIsASC} />
             {alertVisible && alertMsg}
         </>
     );
