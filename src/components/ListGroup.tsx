@@ -7,6 +7,7 @@ import getBooks from "@utils/apiCalls/book/getBooks";
 import Book from "@interfaces/book";
 import BookFieldConstants from "@utils/constants/BookFieldConstants";
 import BookListSortingOptions from "@components/BookListSortingOptions";
+import SearchBarBooks from "./SearchBarBooks";
 
 function ListGroup() {
 
@@ -15,7 +16,7 @@ function ListGroup() {
     const [sortByOrderIsASC, setSortByOrderIsASC] = useState(true)
 
     const getNoItemsMsg = () => {
-        return books.length === 0 && <p>You have no books</p>
+        return books.length === 0 && <p>No entries found</p>
     }
 
     const [alertMsg, setAlertMsg] = useState(<></>)
@@ -39,6 +40,10 @@ function ListGroup() {
 
             <BookListSortingOptions 
             setBooks={setBooks} sortByColumn={sortByColumn} setSortByColumn={setSortByColumn} sortByOrderIsASC={sortByOrderIsASC} setSortByOrderIsASC={setSortByOrderIsASC} />
+
+            <SearchBarBooks 
+                bookListSetter={setBooks}
+            />
 
             {getNoItemsMsg()}
             <ul className="list-group">
