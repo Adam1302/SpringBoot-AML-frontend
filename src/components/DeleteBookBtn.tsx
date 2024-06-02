@@ -1,4 +1,3 @@
-import BookListSetterType from '@interfaces/types/bookListSetterType';
 import deleteBook from '@utils/apiCalls/book/deleteBooks';
 import { ReactNode } from 'react';
 

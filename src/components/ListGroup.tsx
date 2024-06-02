@@ -8,7 +8,6 @@ import Book from "@interfaces/book";
 import BookFieldConstants from "@utils/constants/BookFieldConstants";
 import BookListSortingOptions from "@components/BookListSortingOptions";
 import SearchBarBooks from "./SearchBarBooks";
-import React from "react";
 
 function ListGroup() {
 
@@ -18,7 +17,7 @@ function ListGroup() {
     const [titleSearch, setTitleSearch] = useState('')
     const [authorSearch, setAuthorSearch] = useState('')
 
-    React.useEffect(() =>
+    useEffect(() =>
         {bookListGetter()}, [books, sortByColumn, sortByOrderIsASC, titleSearch, authorSearch]
     )
 
