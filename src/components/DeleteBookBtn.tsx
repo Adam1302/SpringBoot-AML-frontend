@@ -4,15 +4,12 @@ import { ReactNode } from 'react';
 
 interface DeleteBookBtnProps {
   id : string;
-  bookListSetter: BookListSetterType;
   alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void;
-  sortingColumn : string;
-  sortByOrderIsASC : boolean;
 }
 
-function DeleteBookBtn({ id, bookListSetter, alertSetter, sortingColumn, sortByOrderIsASC }: Readonly<DeleteBookBtnProps>) {
+function DeleteBookBtn({ id, alertSetter }: Readonly<DeleteBookBtnProps>) {
   const handleDelete = async () => {
-    await deleteBook({ id, bookListSetter, alertSetter, sortingColumn, sortByOrderIsASC });
+    await deleteBook({ id, alertSetter });
   };
 
   return <button onClick={handleDelete}>Delete</button>

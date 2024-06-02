@@ -19,7 +19,7 @@ function ListGroup() {
     const [authorSearch, setAuthorSearch] = useState('')
 
     React.useEffect(() =>
-        {bookListGetter()}, [sortByColumn, sortByOrderIsASC, titleSearch, authorSearch]
+        {bookListGetter()}, [books, sortByColumn, sortByOrderIsASC, titleSearch, authorSearch]
     )
 
     const bookListGetter = () => getBooks( setBooks, sortByColumn, sortByOrderIsASC, titleSearch, authorSearch );
@@ -39,19 +39,17 @@ function ListGroup() {
     }
     const dismissAlert = () => setAlertVisible(false)
 
-    useEffect(() => {
-        getBooks( setBooks, sortByColumn, sortByOrderIsASC, titleSearch, authorSearch );
-    }, [])
-
     return (
         <>
             <h1>Book List</h1>
 
             <BookListSortingOptions 
-            bookListGetter={bookListGetter} sortByColumn={sortByColumn} setSortByColumn={setSortByColumn} sortByOrderIsASC={sortByOrderIsASC} setSortByOrderIsASC={setSortByOrderIsASC} />
+                sortByColumn={sortByColumn}
+                setSortByColumn={setSortByColumn}
+                sortByOrderIsASC={sortByOrderIsASC} 
+                setSortByOrderIsASC={setSortByOrderIsASC} />
 
             <SearchBarBooks 
-                bookListGetter={bookListGetter}
                 authorSearchSetter={setAuthorSearch}
                 titleSearchSetter={setTitleSearch}
             />
@@ -64,19 +62,14 @@ function ListGroup() {
                         className="list-group-item"> 
                     <BookImage id={item.id} />
                     {item.work_title} {item.primary_author ? "by".concat(' ', item.primary_author) : ""}
-                        <DeleteBookBtn 
-                            id={item.id} 
-                            bookListSetter={setBooks}
-                            alertSetter={setAlert}
-                            sortingColumn={sortByColumn}
-                            sortByOrderIsASC={sortByOrderIsASC} /> </li>  )}
+                    <DeleteBookBtn 
+                        id={item.id} 
+                        alertSetter={setAlert} /> </li>  )}
             </ul>
 
             <AddBookBtn 
                 bookListSetter={setBooks}
-                alertSetter={setAlert}
-                sortingColumn={sortByColumn}
-                sortByOrderIsASC={sortByOrderIsASC} />
+                alertSetter={setAlert} />
             {alertVisible && alertMsg}
         </>
     );

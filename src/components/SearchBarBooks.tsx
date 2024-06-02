@@ -1,12 +1,11 @@
 
 interface Props {
-    bookListGetter : () => Promise<void>;
     authorSearchSetter: React.Dispatch<React.SetStateAction<string>>;
     titleSearchSetter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function SearchBarBooks(
-    {bookListGetter, authorSearchSetter, titleSearchSetter} 
+    { authorSearchSetter, titleSearchSetter} 
     : Readonly<Props>) {
 
     return <div className="input-group mb-3">
@@ -24,10 +23,6 @@ function SearchBarBooks(
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Author"
                 onChange={evt => authorSearchSetter(evt.target.value)} />
-            <button
-                onClick={bookListGetter}>
-                Search
-            </button>
         </div>
 }
 

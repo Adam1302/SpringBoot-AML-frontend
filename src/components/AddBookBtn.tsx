@@ -5,11 +5,9 @@ import BookListSetterType from '@interfaces/types/bookListSetterType';
 interface AddBookBtnProps {
     bookListSetter: BookListSetterType;
     alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void;
-    sortingColumn: string;
-    sortByOrderIsASC: boolean;
 }
 
-function AddBookBtn({ bookListSetter, alertSetter, sortingColumn, sortByOrderIsASC }: Readonly<AddBookBtnProps>) {
+function AddBookBtn({ bookListSetter, alertSetter }: Readonly<AddBookBtnProps>) {
     const [workTitle, setWorkTitle] = useState('')
     const [primaryAuthor, setPrimaryAuthor] = useState('')
     const [yearPublished, setYearPublished] = useState('')
@@ -29,7 +27,7 @@ function AddBookBtn({ bookListSetter, alertSetter, sortingColumn, sortByOrderIsA
                     console.log("ERROR: Enter positive integer for Word Count")
                     alertSetter({ success: false, children: "ERROR: Enter valid integer value for Word Count"} );
                 } else {
-                    await addBook({ bookListSetter, alertSetter, work_title: workTitle, primary_author: primaryAuthor, year_published: yearPublishedAsInt, word_count: wordCountAsInt, sortingColumn: sortingColumn, sortByOrderIsASC: sortByOrderIsASC });
+                    await addBook({ alertSetter, work_title: workTitle, primary_author: primaryAuthor, year_published: yearPublishedAsInt, word_count: wordCountAsInt });
                 }
         } else {
             alertSetter({ success: false, children: "Unable to add book - invalid entries" });

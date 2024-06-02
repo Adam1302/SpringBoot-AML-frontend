@@ -1,17 +1,14 @@
-import getBooks from "@utils/apiCalls/book/getBooks";
 import BookFieldConstants from "@utils/constants/BookFieldConstants";
 import { Checkbox, Form } from 'semantic-ui-react';
-import BookListSetterType from "@interfaces/types/bookListSetterType";
 
 interface BookListSortingOptionsProps {
-    bookListGetter : () => Promise<void>;
     sortByColumn: string;
     setSortByColumn: React.Dispatch<React.SetStateAction<string>>;
     sortByOrderIsASC: boolean;
     setSortByOrderIsASC: React.Dispatch<React.SetStateAction<boolean>>;
   };
 
-function BookListSortingOptions( { bookListGetter, sortByColumn, setSortByColumn, sortByOrderIsASC, setSortByOrderIsASC } : Readonly<BookListSortingOptionsProps> ) {
+function BookListSortingOptions( { sortByColumn, setSortByColumn, sortByOrderIsASC, setSortByOrderIsASC } : Readonly<BookListSortingOptionsProps> ) {
     return <>
     <Form.Group className='d-flex'>
                 <label>Sort list by: </label>
@@ -22,8 +19,7 @@ function BookListSortingOptions( { bookListGetter, sortByColumn, setSortByColumn
                             checked={sortByColumn === field[0]}
                             value={field[0]}
                             onClick={ () => {
-                                setSortByColumn(field[0]);
-                                bookListGetter(); }
+                                setSortByColumn(field[0]); }
                               }
                             className='inline-radio-list' />
                 )}
@@ -33,7 +29,7 @@ function BookListSortingOptions( { bookListGetter, sortByColumn, setSortByColumn
                 className="toggle-btn"
                 toggle
                 defaultChecked={true}
-                label={sortByOrderIsASC ? "ASC" : "DESC"} onClick={(evt, data) => { setSortByOrderIsASC(!sortByOrderIsASC); bookListGetter(); } } />
+                label={sortByOrderIsASC ? "ASC" : "DESC"} onClick={() => { setSortByOrderIsASC(!sortByOrderIsASC); } } />
     </>
 }
 
