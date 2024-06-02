@@ -1,26 +1,20 @@
 import axios from "axios";
 import { ReactNode } from "react";
-import getBooks from "./getBooks";
-import BookListSetterType from "@interfaces/types/bookListSetterType";
 
 
 const addBook = async (
-    { bookListSetter, 
+    {
         alertSetter,
         work_title, 
         primary_author, 
         year_published, 
-        word_count,
-        sortingColumn,
-        sortByOrderIsASC } : 
-    { bookListSetter: BookListSetterType, 
+        word_count } : 
+    {
         alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void, 
         work_title : string, 
         primary_author : string, 
         year_published : number, 
-        word_count : number,
-        sortingColumn : string,
-        sortByOrderIsASC : boolean }) => {
+        word_count : number }) => {
 
     let data = JSON.stringify({
         "work_title": work_title,
@@ -42,7 +36,6 @@ const addBook = async (
     axios.request(config)
     .then((response) => {
         console.log(JSON.stringify(response.data));
-        getBooks( bookListSetter, sortingColumn, sortByOrderIsASC );
         alertSetter({ success: true, children: work_title + " Added"} );
     })
     .catch((error) => {

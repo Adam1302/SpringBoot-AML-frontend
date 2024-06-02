@@ -1,9 +1,14 @@
-import DeleteBookBtnProps from '@interfaces/props/DeleteBookBtnProps';
 import deleteBook from '@utils/apiCalls/book/deleteBooks';
+import { ReactNode } from 'react';
 
-function DeleteBookBtn({ id, bookListSetter, alertSetter, sortingColumn, sortByOrderIsASC }: Readonly<DeleteBookBtnProps>) {
+interface DeleteBookBtnProps {
+  id : string;
+  alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void;
+}
+
+function DeleteBookBtn({ id, alertSetter }: Readonly<DeleteBookBtnProps>) {
   const handleDelete = async () => {
-    await deleteBook({ id, bookListSetter, alertSetter, sortingColumn, sortByOrderIsASC });
+    await deleteBook({ id, alertSetter });
   };
 
   return <button onClick={handleDelete}>Delete</button>
