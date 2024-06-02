@@ -2,14 +2,15 @@ import BookListSetterType from "@/interfaces/types/bookListSetterType";
 import getBooksBySearch from "@/utils/apiCalls/book/getBooksBySearch";
 import { useState } from "react";
 
+interface Props {
+    bookListSetter : BookListSetterType;
+}
 
-
-function SearchBarBooks({bookListSetter} : {bookListSetter : BookListSetterType}) {
+function SearchBarBooks({bookListSetter} : Readonly<Props>) {
     const [titleSearch, setTitleSearch] = useState('')
     const [authorSearch, setAuthorSearch] = useState('')
 
-    return <>
-        <div className="input-group mb-3">
+    return <div className="input-group mb-3">
             <input
                 type="text"
                 className="form-control"
@@ -31,7 +32,6 @@ function SearchBarBooks({bookListSetter} : {bookListSetter : BookListSetterType}
                 Search
             </button>
         </div>
-    </>
 }
 
 export default SearchBarBooks;
