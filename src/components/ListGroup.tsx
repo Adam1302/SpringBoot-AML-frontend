@@ -8,12 +8,21 @@ import Book from "@interfaces/book";
 import BookFieldConstants from "@utils/constants/BookFieldConstants";
 import BookListSortingOptions from "@components/BookListSortingOptions";
 import SearchBarBooks from "./SearchBarBooks";
+import React from "react";
 
 function ListGroup() {
 
     const [books, setBooks] = useState<Book[]>([]);
     const [sortByColumn, setSortByColumn] = useState(BookFieldConstants.workTitleField)
     const [sortByOrderIsASC, setSortByOrderIsASC] = useState(true)
+    const [titleSearch, setTitleSearch] = useState('')
+    const [authorSearch, setAuthorSearch] = useState('')
+
+    React.useEffect(() =>
+        {bookListGetter()}, [sortByColumn, sortByOrderIsASC, titleSearch, authorSearch]
+    )
+
+    const bookListGetter = () => getBooks( setBooks, sortByColumn, sortByOrderIsASC, titleSearch, authorSearch );
 
     const getNoItemsMsg = () => {
         return books.length === 0 && <p>No entries found</p>
@@ -31,7 +40,7 @@ function ListGroup() {
     const dismissAlert = () => setAlertVisible(false)
 
     useEffect(() => {
-        getBooks( setBooks, sortByColumn, sortByOrderIsASC );
+        getBooks( setBooks, sortByColumn, sortByOrderIsASC, titleSearch, authorSearch );
     }, [])
 
     return (
@@ -39,10 +48,12 @@ function ListGroup() {
             <h1>Book List</h1>
 
             <BookListSortingOptions 
-            setBooks={setBooks} sortByColumn={sortByColumn} setSortByColumn={setSortByColumn} sortByOrderIsASC={sortByOrderIsASC} setSortByOrderIsASC={setSortByOrderIsASC} />
+            bookListGetter={bookListGetter} sortByColumn={sortByColumn} setSortByColumn={setSortByColumn} sortByOrderIsASC={sortByOrderIsASC} setSortByOrderIsASC={setSortByOrderIsASC} />
 
             <SearchBarBooks 
-                bookListSetter={setBooks}
+                bookListGetter={bookListGetter}
+                authorSearchSetter={setAuthorSearch}
+                titleSearchSetter={setTitleSearch}
             />
 
             {getNoItemsMsg()}

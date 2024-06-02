@@ -1,14 +1,13 @@
-import BookListSetterType from "@/interfaces/types/bookListSetterType";
-import getBooksBySearch from "@/utils/apiCalls/book/getBooksBySearch";
-import { useState } from "react";
 
 interface Props {
-    bookListSetter : BookListSetterType;
+    bookListGetter : () => Promise<void>;
+    authorSearchSetter: React.Dispatch<React.SetStateAction<string>>;
+    titleSearchSetter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function SearchBarBooks({bookListSetter} : Readonly<Props>) {
-    const [titleSearch, setTitleSearch] = useState('')
-    const [authorSearch, setAuthorSearch] = useState('')
+function SearchBarBooks(
+    {bookListGetter, authorSearchSetter, titleSearchSetter} 
+    : Readonly<Props>) {
 
     return <div className="input-group mb-3">
             <input
@@ -17,18 +16,16 @@ function SearchBarBooks({bookListSetter} : Readonly<Props>) {
                 aria-label="Title-Input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Title"
-                value={titleSearch}
-                onChange={evt => setTitleSearch(evt.target.value)} />
+                onChange={evt => titleSearchSetter(evt.target.value)} />
             <input
                 type="text"
                 className="form-control"
                 aria-label="Title-Input"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Author"
-                value={authorSearch}
-                onChange={evt => setAuthorSearch(evt.target.value)} />
+                onChange={evt => authorSearchSetter(evt.target.value)} />
             <button
-                onClick={e => getBooksBySearch(bookListSetter, titleSearch, authorSearch)}>
+                onClick={bookListGetter}>
                 Search
             </button>
         </div>

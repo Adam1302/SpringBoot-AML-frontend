@@ -1,6 +1,13 @@
 import addBook from '@utils/apiCalls/book/addBook';
-import AddBookBtnProps from '@interfaces/props/AddBookBtnProps';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
+import BookListSetterType from '@interfaces/types/bookListSetterType';
+
+interface AddBookBtnProps {
+    bookListSetter: BookListSetterType;
+    alertSetter: ({ success, children }: { success: boolean, children: ReactNode }) => void;
+    sortingColumn: string;
+    sortByOrderIsASC: boolean;
+}
 
 function AddBookBtn({ bookListSetter, alertSetter, sortingColumn, sortByOrderIsASC }: Readonly<AddBookBtnProps>) {
     const [workTitle, setWorkTitle] = useState('')
