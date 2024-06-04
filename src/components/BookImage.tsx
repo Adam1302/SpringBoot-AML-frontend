@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "@/styles.css";
+import "@src/styles.css";
 import getImage from '@utils/apiCalls/image/getImage';
 
 interface Props {
